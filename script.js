@@ -47,9 +47,7 @@ const OutManipulation = {
 
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
-    operated 
-      ? ((screen.innerText = ""), (operated = false))
-      : null;
+    operated ? ((screen.innerText = ""), (operated = false)) : null;
     screen.innerText += number.innerText;
   });
 });
@@ -78,7 +76,7 @@ operators.forEach((button) => {
       }
     }
     memoryInfo.innerText = memory.toString();
-    opInfo.innerText = op.toString(); 
+    opInfo.innerText = op.toString();
   });
 });
 

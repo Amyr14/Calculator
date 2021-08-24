@@ -5,7 +5,8 @@
   margin-top: 100px;
   width: 340px;
   height: 500px;
-  border: 2px solid black;
+  border: 4px solid black;
+  border-radius: 10px;
 }
 
 .btnCont {
@@ -19,17 +20,22 @@
 .output {
   display: box;
   position: absolute;
-  height: 190px;
-  width: 340px;
+  left: 3px;
+  top: 3px;
+  height: 180px;
+  width: 335px;
+  border-bottom: 4px solid black;
 }
 
 .info {
     display: box;
     position: absolute;
     top: 10px;
-    left: 5px;
-    height: 190px;
-    width: 200px;
+    left: 6px;
+    height: 25px;
+    width: fit-content;
+    border: 2px solid #e65c5c;
+    border-radius: 10px;
 }
 
 #screen {
@@ -63,10 +69,13 @@ div.container div.btnCont div {
   text-align: center;
   color: white;
   font-size: medium;
+  border-radius: 10px;
+  box-shadow: 1px 1px #363233;
 }
 .numb:active {
   background-color: #3085a1;
   box-shadow: inset 2px 2px #363233;
+  color: #BDBCBC;
 }
 
 .op {
@@ -78,9 +87,12 @@ div.container div.btnCont div {
   text-align: center;
   color: white;
   font-size: medium;
+  border-radius: 10px;
+  box-shadow: 1px 1px #363233;
 }
 
 .op:active {
   background-color: #b14747;
   box-shadow: inset 2px 2px #363233;
+  color: #BDBCBC;
 }
