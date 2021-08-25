@@ -10,22 +10,28 @@ let second = 0;
 let result = 0;
 let memory = 0;
 let operated = false;
-let awaitingInput = false;
+let memoryCleared = false;
 
-const Operations = {
-  "+": function (first, second){
-      return first + second;
+ const Operations = {
+  "+": function (first, second) {
+    return first + second;
   },
-  "-": function (first, second){
-      return first - second;
+  "-": function (first, second) {
+    return first - second;
   },
-  "/": function (first, second){
-      return first / second;
+  "/": function (first, second) {
+    return first / second;
   },
-  "x": function (first, second){
-      return first * second;
+  "x": function (first, second) {
+    return first * second;
+  },
+  "Root": function (first, second) {
+    return Math.pow(first, 1/second);
+  },
+  "Pow": function (first, second) {
+    return Math.pow(first, second);
   }
-}
+};
 
 const OutManipulation = {
   "CE": function () {
@@ -47,6 +53,7 @@ const OutManipulation = {
 
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
+    !op && memory ? ((memory = 0)) : null;
     operated ? ((screen.innerText = ""), (operated = false)) : null;
     screen.innerText += number.innerText;
   });
