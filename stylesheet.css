@@ -74,7 +74,6 @@ div.container div.btnCont div {
 }
 .numb:active {
   background-color: #3085a1;
-  box-shadow: inset 2px 2px #363233;
   color: #BDBCBC;
 }
 
@@ -94,6 +93,5 @@ div.container div.btnCont div {
 
 .op:active {
   background-color: #b14747;
-  box-shadow: inset 2px 2px #363233;
   color: #BDBCBC;
 }
