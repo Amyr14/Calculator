@@ -46,12 +46,20 @@
   text-align: center;
   font-size: xx-large;
   color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 15ch;
 }
 
 div.info p {
     display: inline;
     font-size: small;
     margin: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 15ch;
 }
 
 div.container div.btnCont div {
