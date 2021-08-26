@@ -64,7 +64,7 @@ operators.forEach((button) => {
     const operation = button.innerText;
     if (operation === "CE" || operation === "C" || operation === "BS") {
       OutManipulation[operation]();
-    } else if (memory) {
+    } else if (!memory) {
       memory = parseFloat(screen.innerText);
       operation === "=" ? null : ((op = operation), (screen.innerText = ""));
     } else {
