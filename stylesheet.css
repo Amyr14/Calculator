@@ -70,7 +70,7 @@ div.container div.btnCont div {
   color: white;
   font-size: medium;
   border-radius: 10px;
-  box-shadow: 1px 1px #363233;
+  border: none !important;
 }
 .numb:active {
   background-color: #3085a1;
@@ -88,7 +88,8 @@ div.container div.btnCont div {
   color: white;
   font-size: medium;
   border-radius: 10px;
-  box-shadow: 1px 1px #363233;
+  border: none !important;
+
 }
 
 .op:active {
