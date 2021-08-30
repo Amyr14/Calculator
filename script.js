@@ -69,8 +69,10 @@ function cleanScreen() {
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
     let isDot = number.innerText === "." ? true : false;
-    !op && memorySet ?  ((memory = 0), (updateMemory()),(memorySet = false)) : null;
-    operated ? ((cleanScreen()), (operated = false)) : null;
+    !op && memorySet
+      ? ((memory = 0), updateMemory(), (memorySet = false))
+      : null;
+    operated ? (cleanScreen(), (operated = false)) : null;
     isDot
       ? screen.innerText.includes(".")
         ? null
@@ -82,13 +84,18 @@ numbers.forEach((number) => {
 operators.forEach((button) => {
   button.addEventListener("click", () => {
     const operation = button.innerText;
-    if (operation === "CE" || operation === "C" || operation === "BS" || operation === "+/-") {
+    if (
+      operation === "CE" ||
+      operation === "C" ||
+      operation === "BS" ||
+      operation === "+/-"
+    ) {
       ScreenManipulation[operation]();
     } else if (!memorySet) {
       memory = parseFloat(screen.innerText);
       updateMemory();
       memorySet = true;
-      operation === "=" ? null : ((op = operation), (cleanScreen()));
+      operation === "=" ? null : ((op = operation), cleanScreen());
     } else {
       if (op) {
         second = parseFloat(screen.innerText);
