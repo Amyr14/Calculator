@@ -5,12 +5,11 @@ const screen = document.getElementById("screen");
 const memoryInfo = document.getElementById("memory");
 const opInfo = document.getElementById("operation");
 let op = "";
-let first = 0;
 let second = 0;
 let result = 0;
 let memory = 0;
 let operated = false;
-let memoryCleared = false;
+let memorySet = false;
 
  const Operations = {
   "+": function (first, second) {
@@ -30,61 +29,82 @@ let memoryCleared = false;
   },
   "Pow": function (first, second) {
     return Math.pow(first, second);
-  }
+  },
 };
 
-const OutManipulation = {
+const ScreenManipulation = {
   "CE": function () {
     op = "";
-    first = 0;
     second = 0;
     result = 0;
     memory = 0;
-    screen.innerText = "";
+    updateMemory();
+    cleanScreen();
+    memorySet = false;
     operated = false;
   },
   "C": function () {
-    screen.innerText = "";
+    operated ? null : screen.innerText;
   },
   "BS": function () {
-    screen.innerText = screen.innerText.slice(0, -1);
+    operated ? null : (screen.innerText = screen.innerText.slice(0, -1));
+  },
+  "+/-": function () {
+    operated || screen.innerText === ""
+      ? null
+      : screen.innerText.includes("-")
+        ? (screen.innerText = screen.innerText.replace("-", ""))
+        : (screen.innerText = "-" + screen.innerText);
   },
 };
 
+function updateMemory() {
+  memoryInfo.innerText = memory.toString();
+}
+
+function cleanScreen() {
+  screen.innerText = "";
+}
+
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
-    !op && memory ? ((memory = 0)) : null;
-    operated ? ((screen.innerText = ""), (operated = false)) : null;
-    screen.innerText += number.innerText;
+    let isDot = number.innerText === "." ? true : false;
+    !op && memorySet ?  ((memory = 0), (updateMemory()),(memorySet = false)) : null;
+    operated ? ((cleanScreen()), (operated = false)) : null;
+    isDot
+      ? screen.innerText.includes(".")
+        ? null
+        : (screen.innerText += number.innerText)
+      : (screen.innerText += number.innerText);
   });
 });
 
 operators.forEach((button) => {
   button.addEventListener("click", () => {
     const operation = button.innerText;
-    if (operation === "CE" || operation === "C" || operation === "BS") {
-      OutManipulation[operation]();
-    } else if (!memory) {
+    if (operation === "CE" || operation === "C" || operation === "BS" || operation === "+/-") {
+      ScreenManipulation[operation]();
+    } else if (!memorySet) {
       memory = parseFloat(screen.innerText);
-      operation === "=" ? null : ((op = operation), (screen.innerText = ""));
+      updateMemory();
+      memorySet = true;
+      operation === "=" ? null : ((op = operation), (cleanScreen()));
     } else {
       if (op) {
         second = parseFloat(screen.innerText);
         result = Operations[op](memory, second);
         screen.innerText = result.toString();
         memory = result;
+        updateMemory();
         operated = true;
         result = 0;
         second = 0;
         operation === "=" ? (op = "") : (op = operation);
       } else {
         op = operation;
-        screen.innerText = "";
+        cleanScreen();
       }
     }
-    memoryInfo.innerText = memory.toString();
-    opInfo.innerText = op.toString();
+    opInfo.innerText = op;
   });
 });
-
-
